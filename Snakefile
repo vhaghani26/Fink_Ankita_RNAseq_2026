@@ -5,7 +5,6 @@ configfile: "samples.yaml"
 
 rule all:
     input:
-        expand("03_bam_files/{sample}_Aligned.sortedByCoord.out.bam.bai", sample=config["samples"]),
         "04_multiqc/multiqc_report.html",
         "05_gene_counts/counts.txt"
 
@@ -14,26 +13,26 @@ rule all:
 ########################
 
 rule download_hg38_genes:
-    output: "01_Genomes/hg38/gencode.v49.annotation.gtf.gz"
+    output: temp("01_Genomes/hg38/gencode.v49.annotation.gtf.gz")
     log: "00_logs/download_hg38_genes.log"
     shell: "wget 'https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz' -O {output} 2> {log}"
     
 rule unzip_annot:
     input: "01_Genomes/hg38/gencode.v49.annotation.gtf.gz"
-    output: "01_Genomes/hg38/gencode.v49.annotation.gtf"
+    output: temp("01_Genomes/hg38/gencode.v49.annotation.gtf")
     log: "00_logs/unzip_annotation_genes.log"
     shell: "gunzip -f {input} > {output} 2> {log}" 
     
 rule hg38_download_genome:
    message: "Downloading hg38 genome"
-   output: "01_Genomes/hg38/hg38.chromFa.tar.gz"
+   output: temp("01_Genomes/hg38/hg38.chromFa.tar.gz")
    log: "00_logs/download_hg38_genome.log"
    run:
        shell("wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.chromFa.tar.gz -O {output} 2> {log}")
 
 rule hg38_process_genome:
    input: "01_Genomes/hg38/hg38.chromFa.tar.gz"
-   output: "01_Genomes/hg38/hg38.fa"
+   output: temp("01_Genomes/hg38/hg38.fa")
    log: "00_logs/process_hg38_genome.log"
    run:
        shell("tar -xzf {input} -C 01_Genomes/hg38/")
@@ -42,7 +41,7 @@ rule hg38_process_genome:
 
 rule move_genome:
     input: "01_Genomes/hg38/hg38.fa",
-    output: "01_Genomes/hg38/STAR_indexed_hg38/hg38.fa"
+    output: temp("01_Genomes/hg38/STAR_indexed_hg38/hg38.fa")
     log: "00_logs/move_hg38_genome.log"
     shell: "mv {input} {output}"
 
@@ -51,14 +50,14 @@ rule index_genome:
         genome_fa = "01_Genomes/hg38/STAR_indexed_hg38/hg38.fa",
         gene_ann = "01_Genomes/hg38/gencode.v49.annotation.gtf"
     output:
-        indexers1 = "01_Genomes/hg38/STAR_indexed_hg38/chrLength.txt",
-        indexers2 = "01_Genomes/hg38/STAR_indexed_hg38/chrNameLength.txt",
-        indexers3 = "01_Genomes/hg38/STAR_indexed_hg38/chrName.txt",
-        indexers4 = "01_Genomes/hg38/STAR_indexed_hg38/chrStart.txt",
-        indexers5 = "01_Genomes/hg38/STAR_indexed_hg38/Genome",
-        indexers6 = "01_Genomes/hg38/STAR_indexed_hg38/genomeParameters.txt",
-        indexers7 = "01_Genomes/hg38/STAR_indexed_hg38/SA",
-        indexers8 = "01_Genomes/hg38/STAR_indexed_hg38/SAindex",   
+        indexers1 = temp("01_Genomes/hg38/STAR_indexed_hg38/chrLength.txt"),
+        indexers2 = temp("01_Genomes/hg38/STAR_indexed_hg38/chrNameLength.txt"),
+        indexers3 = temp("01_Genomes/hg38/STAR_indexed_hg38/chrName.txt"),
+        indexers4 = temp("01_Genomes/hg38/STAR_indexed_hg38/chrStart.txt"),
+        indexers5 = temp("01_Genomes/hg38/STAR_indexed_hg38/Genome"),
+        indexers6 = temp("01_Genomes/hg38/STAR_indexed_hg38/genomeParameters.txt"),
+        indexers7 = temp("01_Genomes/hg38/STAR_indexed_hg38/SA"),
+        indexers8 = temp("01_Genomes/hg38/STAR_indexed_hg38/SAindex"),   
     log: "00_logs/index_hg38_genome.log"
     resources:
         mem_mb = 1024 * 100,
@@ -102,7 +101,7 @@ rule align_reads:
         r1 = "02_trimmed/{sample}_1_val_1.fq.gz",
         r2 = "02_trimmed/{sample}_2_val_2.fq.gz"
     output: 
-        bam_file = "03_bam_files/{sample}_Aligned.sortedByCoord.out.bam",
+        bam_file = temp("03_bam_files/{sample}_Aligned.sortedByCoord.out.bam"),
         gene_counts = "03_bam_files/{sample}_ReadsPerGene.out.tab"
     log: "00_logs/{sample}_align_hg38_reads_err.log"
     resources:
@@ -121,7 +120,7 @@ rule align_reads:
 
 rule bam_index:
     input: "03_bam_files/{sample}_Aligned.sortedByCoord.out.bam"
-    output: "03_bam_files/{sample}_Aligned.sortedByCoord.out.bam.bai"
+    output: temp("03_bam_files/{sample}_Aligned.sortedByCoord.out.bam.bai")
     log: "00_logs/{sample}_bam_index.log"
     resources:
         mem_mb = 1024 * 25,
