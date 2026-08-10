@@ -6,6 +6,8 @@ gene_name_mapping.csv
 05_DEGs/
 06_DEG_GO/
 07_DEG_Figures
+00_FIGURES/
+00_TABLES/
 03_bam_files/
 04_multiqc/
 04_Visualize_DEGs/
