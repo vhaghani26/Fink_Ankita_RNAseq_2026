@@ -6,22 +6,22 @@ TBD
 
 ## Raw Data
 
-All raw data associated with the study can be found under GEO Accession Number **TBD**.
+All raw data associated with the study can be found under GEO Accession Number **GSE355213**.
 
 | SRA ID | Sample Name | Genotype | Treatment | Group | Replicate | Tissue Type | Batch |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|  | MUT_Guide6_1 | MUT | Guide6 | MUT_Guide6 | 1 | Cortical Organoid | 0 |
-|  | MUT_Guide6_2 | MUT | Guide6 | MUT_Guide6 | 2 | Cortical Organoid | 0 |
-|  | MUT_Guide6_3 | MUT | Guide6 | MUT_Guide6 | 3 | Cortical Organoid | 0 |
-|  | MUT_NonEffector_1 | MUT | NonEffector | MUT_NonEffector | 1 | Cortical Organoid | 1 |
-|  | MUT_NonEffector_2 | MUT | NonEffector | MUT_NonEffector | 2 | Cortical Organoid | 1 |
-|  | MUT_NonEffector_3 | MUT | NonEffector | MUT_NonEffector | 3 | Cortical Organoid | 1 |
-|  | MUT_NT_1 | MUT | NT | MUT_NT | 1 | Cortical Organoid | 1 |
-|  | MUT_NT_2 | MUT | NT | MUT_NT | 2 | Cortical Organoid | 1 |
-|  | MUT_NT_3 | MUT | NT | MUT_NT | 3 | Cortical Organoid | 1 |
-|  | WT_NT_1 | WT | NT | WT_NT | 1 | Cortical Organoid | 1 |
-|  | WT_NT_2 | WT | NT | WT_NT | 2 | Cortical Organoid | 1 |
-|  | WT_NT_3 | WT | NT | WT_NT | 3 | Cortical Organoid | 1 |
+| SRX36252170 | MUT_Guide6_1 | MUT | Guide6 | MUT_Guide6 | 1 | Cortical Organoid | 0 |
+| SRX36252169 | MUT_Guide6_2 | MUT | Guide6 | MUT_Guide6 | 2 | Cortical Organoid | 0 |
+| SRX36252168 | MUT_Guide6_3 | MUT | Guide6 | MUT_Guide6 | 3 | Cortical Organoid | 0 |
+| SRX36252167 | MUT_NonEffector_1 | MUT | NonEffector | MUT_NonEffector | 1 | Cortical Organoid | 1 |
+| SRX36252166 | MUT_NonEffector_2 | MUT | NonEffector | MUT_NonEffector | 2 | Cortical Organoid | 1 |
+| SRX36252177 | MUT_NonEffector_3 | MUT | NonEffector | MUT_NonEffector | 3 | Cortical Organoid | 1 |
+| SRX36252176 | MUT_NT_1 | MUT | NT | MUT_NT | 1 | Cortical Organoid | 1 |
+| SRX36252175 | MUT_NT_2 | MUT | NT | MUT_NT | 2 | Cortical Organoid | 1 |
+| SRX36252174 | MUT_NT_3 | MUT | NT | MUT_NT | 3 | Cortical Organoid | 1 |
+| SRX36252173 | WT_NT_1 | WT | NT | WT_NT | 1 | Cortical Organoid | 1 |
+| SRX36252172 | WT_NT_2 | WT | NT | WT_NT | 2 | Cortical Organoid | 1 |
+| SRX36252171 | WT_NT_3 | WT | NT | WT_NT | 3 | Cortical Organoid | 1 |
 
 Note that all numerical labels preceding scripts and directories are reflective of the order that things were run. Some directories are not in the GitHub repository due to the fact that those directories contained sequence data that are inappropriate to host on GitHub. However, you can access all the raw data using the information above and associated scripts in this repository.
 
